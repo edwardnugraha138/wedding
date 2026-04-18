@@ -147,7 +147,7 @@ function mulai() {
   const elemen = document.querySelector('.text-gray-700');
 
   if (nama) {
-    elemen.innerText = "Kepada Yth. " + decodeURIComponent(nama);
+    elemen.innerText = decodeURIComponent(nama);
   } else {
-    elemen.innerText = "Kepada Yth. Tamu Undangan";
+    elemen.innerText = "";
   }
