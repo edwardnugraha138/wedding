@@ -717,25 +717,14 @@ font-family:  "Cormorant Garamond", serif;
   margin-bottom: 1.5rem;
 }
 
- /* .countdown {
-  margin: 2rem auto;
+ .countdown {
   flex-direction: row;
   display: flex;
   margin-top: 3.5rem;
   margin-bottom: 3.5rem;
   z-index: 30;
   gap: 5px;
-}  */
-
-.countdown {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 3.5rem auto;
-  gap: 5px;
-  z-index: 30;
-}
+} 
 
 .box-count{
   background: rgba(255,255,255,.58);
