@@ -138,3 +138,16 @@ function mulai() {
     document.getElementById("minutes").innerText = minutes;
     document.getElementById("seconds").innerText = seconds;
   }, 1000);
+
+   // ambil parameter dari URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const nama = urlParams.get('to');
+
+  // tampilkan ke HTML
+  const elemen = document.querySelector('.text-gray-700');
+
+  if (nama) {
+    elemen.innerText = "Kepada Yth. " + decodeURIComponent(nama);
+  } else {
+    elemen.innerText = "Kepada Yth. Tamu Undangan";
+  }
