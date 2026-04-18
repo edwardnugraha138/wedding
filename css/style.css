@@ -316,7 +316,7 @@ video{
   font-family: "Cormorant Garamond", serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 12.2px;
+  font-size: clamp(12.2px, 0.3vw, 23px);
   line-height: 25px;
   letter-spacing: 1px;
   width: 135%;
@@ -390,7 +390,7 @@ video{
   font-family:  "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 12.8px;
+  font-size: clamp(12.8px, 0.3vw, 23px);
   line-height: 13px;
   margin-bottom: 0;
 }
@@ -426,7 +426,7 @@ img{
   font-family: Monesta Light;
   font-style: normal;
   font-weight: 400;
-  font-size: clamp(12px, 3.0vw, 23px);
+  font-size: clamp(12px, 0.3vw, 23px);
   line-height: 19px;
 }
 
@@ -604,7 +604,6 @@ img{
   margin-bottom: 1rem;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  width: 106%;
 }
 
 .body-6{
@@ -638,7 +637,7 @@ font-family:  "Cormorant Garamond", serif;
   font-family: Noto Sans,sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: clamp(12px, 3.0vw, 23px);
+  font-size: clamp(12px, 0.3vw, 23px);
   line-height: 16px;
   text-align: center;
   padding-left: 1rem;
@@ -758,4 +757,10 @@ font-family:  "Cormorant Garamond", serif;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+@media (max-width: 640px){
+  .bg-linear-btn-cal{
+    width: 106%;
+  }
 }
