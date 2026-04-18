@@ -1,0 +1,721 @@
+@font-face {
+  font-family: 'Wonderia';
+  src: url('https://cdn.jsdelivr.net/gh/edwardnugraha138/font/Wonderia Font_D  by 7NTypes.otf')format('truetype');
+}
+@font-face {
+  font-family: 'Aston Script';
+  src: url('https://cdn.jsdelivr.net/gh/edwardnugraha138/font/Aston Script.ttf')format('truetype');
+}
+@font-face {
+  font-family: 'Cochin Italic';
+  src: url('https://cdn.jsdelivr.net/gh/edwardnugraha138/font/Cochin Italic.otf')format('truetype');
+}
+@font-face {
+  font-family: 'Monesta Light';
+  src: url('https://cdn.jsdelivr.net/gh/edwardnugraha138/font/Monesta-Light.otf')format('truetype');
+}
+@font-face {
+  font-family: 'Tempting';
+  src: url('https://cdn.jsdelivr.net/gh/edwardnugraha138/font/Tempting.ttf')format('truetype');
+}
+@font-face {
+  font-family: 'Bon Vivant';
+  src: url('https://cdn.jsdelivr.net/gh/edwardnugraha138/font/BonVivantSerif.ttf')format('truetype');
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #181818;
+  transition: color .5s,background-color .5s;
+  line-height: 1.6;
+  font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+}
+
+.container-section{
+  margin: 0 auto;
+  max-width: 480px;
+}
+.main-content {
+    opacity: 0;
+    visibility: hidden;
+}
+/* .main-content{
+  display: none;
+} */
+.cover-section{
+  background-image: url(https://ik.imagekit.io/8wlorgneg/2026/mar26/tataagra/Screenshot.webp);
+  background-color: #f5f3f1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  height: 100dvh;
+  position: relative;
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  z-index: 11;
+}
+
+.cover-content{
+  padding-top: 4rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+
+.background-cover{
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+  transition-duration: 2s;
+  transition-timing-function: ease;
+  transition-duration: .4s;
+  opacity: 0;
+  transition-property: opacity,transform;
+  opacity: 1;
+  width: 16rem;
+  top: 2rem;
+  position: absolute;
+}
+
+.title-cover{
+  font-family: "Wonderia"; 
+  font-size: 32px;
+  z-index: 1;
+}
+
+.name-cover{
+  font-family: "Aston Script"; 
+  font-size: 24px; 
+  line-height: 1.2;
+  z-index: 1;
+}
+
+.bottom-section{
+  position: fixed;
+  bottom: 12%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  z-index: 50;
+}
+
+.box-invitation{
+  background: rgba(245,243,241,.77);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: 1.5rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.text-gray-600{
+  font-family: "Cochin Italic";
+  font-size: 14px;
+}
+
+.text-gray-700{
+  font-family: "Cochin Italic";
+  font-size: 20px;
+}
+
+button{
+border: none;
+outline: none;
+padding-left: 1.5rem;
+padding-right: 1.5rem;
+padding-top: .625rem;
+border-radius: 9999px;
+background-color: rgb(109 115 45);
+cursor: pointer;
+}
+
+.open-invitation{
+  font-family: "Wonderia"; 
+  font-size: 20px; 
+  text-transform: none;
+  color: white;
+}
+
+.flex{
+  flex-direction: column;
+  display: flex;
+  z-index: 10;
+  position: relative;
+}
+.item-center{
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+video{
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+
+.background{
+  background-image: url(https://ik.imagekit.io/8wlorgneg/2026/mar26/tataagra/Screenshot%202026-04-07%20at%2011.53.38.webp?updatedAt=1775729895762);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  height: 100dvh;
+  z-index: -10;
+}
+
+.rounded-section{
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  transition-duration: .4s;
+  background-image: url('../assets/logo-mempelai-b827cd7c.png');
+  transition-property: opacity,transform;
+  border-radius: 350px 350px 35px 35px;
+  padding-top: 6rem;
+  padding-bottom: 2.5rem;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  flex-direction: column;
+  display: flex;
+  margin-left: 2.25rem;
+  margin-right: 2.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.rounded-title-section{
+  font-family: "Bon Vivant Family Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 52px;
+  margin-bottom: 1rem;
+}
+
+.headline-11 {
+  margin-bottom: 2.5rem;
+  font-family: "Bon Vivant Family Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 52px;
+}
+
+.img-rounded{
+  border-radius: .75rem;
+}
+
+.arch-line {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1.5px solid #D4AF37;
+  border-radius: 340px 340px 25px 25px;
+  pointer-events: none;
+  z-index: 5;
+  opacity: .6;
+}
+
+.z-10 {
+  z-index: 10;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.z-10 img{
+  margin-top: -1.5rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-line{
+  opacity: 1;
+  transform: translateZ(0);
+  transition-duration: 1.5s;
+  transition-timing-function: ease;
+  transition-duration: .4s;
+  transition-property: opacity,transform;
+  width: 100%;
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+}
+
+.caption {
+  font-family: Noto Sans,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.mempelai{
+  background-image: url(../assets/logo-mempelai-b827cd7c.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.content-mempelai{
+  padding-top: 5rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+
+.body-77 {
+  margin-bottom: 1.25rem;
+  font-family: Cormorant Garamond;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12.2px;
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+
+.foto-mempelai{
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  margin-bottom: 3.5rem;
+}
+
+.relative{
+  width: 100%;
+  position: relative;
+}
+
+.orn-couple-edge.left {
+  left: 0%;
+  transform: translate(-55%) rotate(-12deg);
+}
+.orn-couple-edge {
+  position: absolute;
+  width: 40%;
+  max-width: 460px;
+  top: -10%;
+  z-index: 0;
+}
+
+.orn-couple-edge.right {
+  right: 0%;
+  transform: translate(55%) rotate(12deg) scaleX(-1);
+}
+.orn-couple-edge {
+  position: absolute;
+  width: 40%;
+  max-width: 460px;
+  top: -10%;
+  z-index: 0;
+}
+
+.w-full{
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.manten{
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  z-index: 10;
+  position: relative;
+}
+
+.manten img{
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.caption-11{
+  font-size: 20.8px;
+  font-family: Cormorant Garamond;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: .2px;
+}
+.caption-12 {
+  font-family: Cormorant Garamond;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12.8px;
+  line-height: 13px;
+  margin-bottom: 0;
+}
+.headline-11 {
+  font-family: "Bon Vivant Family Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 52px;
+}
+
+.divider{
+  width: 100%;
+  position: relative;
+}
+
+.divider-content{
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  z-index: 10;
+  position: relative;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.caption-10 {
+  margin: 0;
+  font-family: Monesta Light;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 19px;
+}
+
+.and{
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+}
+
+.acara-section{
+  padding-bottom: 1.25rem;
+  padding-top: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.acara-content{
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.acara-content img{
+  margin-bottom: .25rem
+}
+
+.headline-20 {
+  font-family: Tempting;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 31.8px;
+  line-height: 58px;
+}
+
+.border-black {
+  border-color: #000000;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.caption-14{
+  font-family: Cormorant Garamond;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: #000;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.detail-acara{
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-radius: .75rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  margin-top: .625rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.headline-21{
+  font-family: "Bon Vivant Family Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 29px;
+  line-height: 22px;
+}
+
+.border-gold{
+  opacity: 1;
+  border-color: rgb(209 178 138);
+  margin-bottom: 1.75rem;
+  margin-top: 1.25rem;
+}
+
+.body-777{
+  font-family: Aston Script;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19.2px;
+  line-height: 25px;
+  letter-spacing: 1px;
+  color: #000000;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+.body-7{
+  font-family: Cormorant Garamond;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19.2px;
+  line-height: 25px;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.body-5 {
+  margin-bottom: 0;
+  font-family: Cormorant Garamond;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.d-img{
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.mt-2{
+  margin-top: .5rem;
+}
+
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
+.pt-5{
+  padding-top: 5rem;
+}
+
+.btn-map{
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.bg-linear-btn{
+  background: linear-gradient(282.22deg,#000000 0%,#a98466 100%);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .15s;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.body-6{
+font-family: Cormorant Garamond;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12.8px;
+  line-height: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+} 
+
+.text-white{
+  color: white;
+}
+
+.gallery-section{
+  background: rgba(245,243,241,.77);
+  box-shadow: 0 0 45px 1px #00000080;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-radius: .75rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.caption-9{
+  font-family: Noto Sans,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.column-flex{
+  flex-direction: row;
+  display: flex;
+  margin-top: 1.5rem;
+}
+.flex-col{
+  flex-direction: column;
+}
+
+.px-2 {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+.column-content{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  flex-direction: column;
+  display: flex;
+}
+
+.column-img{
+  object-fit: cover;
+  border-radius: .5rem;
+  width: 100%;
+  aspect-ratio: 4/5;
+  margin-bottom: 1rem;
+}
+
+.row-img{
+  object-fit: cover;
+  border-radius: .5rem;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+}
+
+.closing-section{
+  padding-bottom: 2.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+.background-closing{
+  background-image: url('../assets/logo-mempelai-b827cd7c.png');
+  transition-property: opacity,transform;
+  font-family: Noto Sans,sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  color: #000000;
+  padding: 1.5rem;
+  border-radius: .75rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  margin-top: 1.5rem;
+  margin-bottom: 4rem;
+  z-index: 10;
+  position: relative;
+}
+
+.img-closing{
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.countdown {
+  margin: 2rem auto;
+  flex-direction: row;
+  display: flex;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  z-index: 30;
+}
+
+.box-count{
+  margin: 0 0.3rem;
+  background: rgba(255,255,255,.58);
+  padding-left: .875rem;
+  padding-right: .875rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  opacity: 1;
+  border: 1px solid #000000;
+  border-radius: .5rem;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
