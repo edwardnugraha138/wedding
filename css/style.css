@@ -319,6 +319,7 @@ video{
   font-size: 12.2px;
   line-height: 25px;
   letter-spacing: 1px;
+  width: 135%;
 }
 
 .foto-mempelai{
@@ -425,7 +426,7 @@ img{
   font-family: Monesta Light;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: clamp(12px, 3.0vw, 23px);
   line-height: 19px;
 }
 
@@ -521,13 +522,14 @@ img{
 }
 
 .body-7{
-  font-family:  "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 19.2px;
+  font-size: clamp(19.2px, 0.5vw, 33px);
   line-height: 25px;
   letter-spacing: 1px;
   color: #000000;
+  width: 135%;
 }
 
 .body-5 {
@@ -583,13 +585,33 @@ img{
   margin-bottom: 1rem;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+  width: 90%;
+}
+.bg-linear-btn-cal{
+  background: linear-gradient(282.22deg,#000000 0%,#a98466 100%);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .15s;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  width: 106%;
 }
 
 .body-6{
 font-family:  "Cormorant Garamond", serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 12.8px;
+  font-size: clamp(12.8px, 0.3vw, 23px);
   line-height: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -616,7 +638,7 @@ font-family:  "Cormorant Garamond", serif;
   font-family: Noto Sans,sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: clamp(12px, 3.0vw, 23px);
   line-height: 16px;
   text-align: center;
   padding-left: 1rem;
@@ -696,7 +718,7 @@ font-family:  "Cormorant Garamond", serif;
   margin-bottom: 1.5rem;
 }
 
-.countdown {
+ /* .countdown {
   margin: 2rem auto;
   flex-direction: row;
   display: flex;
@@ -704,6 +726,17 @@ font-family:  "Cormorant Garamond", serif;
   margin-bottom: 3.5rem;
   z-index: 30;
   gap: 5px;
+}  */
+
+.countdown {
+  display: flex;
+  justify-content: center;  /* center horizontal */
+  align-items: center;      /* center vertical (kalau ada tinggi) */
+  /* flex-wrap: wrap; */
+
+  margin: 3.5rem auto;
+  gap: 5px;
+  z-index: 30;
 }
 
 .box-count{
