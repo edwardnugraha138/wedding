@@ -220,7 +220,7 @@ video{
 }
 
 .rounded-title-section{
-  font-family: "Bon Vivant Family Serif";
+  font-family: "Bon Vivant";
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
@@ -230,7 +230,7 @@ video{
 
 .headline-11 {
   margin-bottom: 2.5rem;
-  font-family: "Bon Vivant Family Serif";
+  font-family: "Bon Vivant";
   font-style: normal;
   font-weight: 400;
   font-size: 48px;
@@ -395,7 +395,7 @@ video{
   margin-bottom: 0;
 }
 .headline-11 {
-  font-family: "Bon Vivant Family Serif";
+  font-family: "Bon Vivant";
   font-style: normal;
   font-weight: 400;
   font-size: 48px;
@@ -495,10 +495,10 @@ img{
 }
 
 .headline-21{
-  font-family: "Bon Vivant Family Serif";
+  font-family: "Bon Vivant";
   font-style: normal;
   font-weight: 400;
-  font-size: 29px;
+  font-size: 26px;
   line-height: 22px;
 }
 
@@ -730,10 +730,9 @@ font-family:  "Cormorant Garamond", serif;
 
 .countdown {
   display: flex;
-  justify-content: center;  /* center horizontal */
-  align-items: center;      /* center vertical (kalau ada tinggi) */
-  /* flex-wrap: wrap; */
-
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
   margin: 3.5rem auto;
   gap: 5px;
   z-index: 30;
