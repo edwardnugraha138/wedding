@@ -168,12 +168,12 @@ function mulai() {
     }
   });
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbw42tjCMMHn-uv7CBhERa996ZjJnbd0evivlP4w5rm4nUrLCZ-iwZNenfkJa6WefDdQTA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbySHRXKf6d6seNlVl4-Spb65dGwP15yqTMjI_YpVVCa0ViNa9Xf-a6klvdanjf1j96kHg/exec";
 
 // FORM RSVP
 document.querySelector("#rsvp-form + div button").addEventListener("click", function() {
   const data = {
-    nama: document.getElementById("name_rsvp").value,
+    nama: document.getElementById("fname_rsvp").value,
     phone: document.getElementById("phone").value,
     kehadiran: document.querySelector('input[name="fav_language"]:checked').id,
     total: document.getElementById("total_hadir").value,
@@ -182,7 +182,7 @@ document.querySelector("#rsvp-form + div button").addEventListener("click", func
 
   fetch(scriptURL, {
     method: "POST",
-    body: JSON.stringify()
+    body: JSON.stringify(data)
   }).then(() => alert("Data RSVP terkirim"));
 });
 
