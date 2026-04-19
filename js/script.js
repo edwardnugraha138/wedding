@@ -151,3 +151,53 @@ function mulai() {
   } else {
     elemen.innerText = "";
   }
+
+    const ya = document.getElementById("ya");
+  const tidak = document.getElementById("tidak");
+  const wrapper = document.getElementById("total_hadir_wrapper");
+
+  ya.addEventListener("change", function() {
+    if (this.checked) {
+      wrapper.style.display = "block";
+    }
+  });
+
+  tidak.addEventListener("change", function() {
+    if (this.checked) {
+      wrapper.style.display = "none";
+    }
+  });
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbySHRXKf6d6seNlVl4-Spb65dGwP15yqTMjI_YpVVCa0ViNa9Xf-a6klvdanjf1j96kHg/exec";
+
+// FORM RSVP
+document.querySelector("#rsvp-form + div button").addEventListener("click", function() {
+  const data = {
+    nama: document.getElementById("fname_rsvp").value,
+    phone: document.getElementById("phone").value,
+    kehadiran: document.querySelector('input[name="fav_language"]:checked').id,
+    total: document.getElementById("total_hadir").value,
+    ucapan: ""
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => alert("Data RSVP terkirim"));
+});
+
+// FORM UCAPAN
+document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function() {
+  const data = {
+    nama: document.getElementById("fname_ucapan").value,
+    phone: "",
+    kehadiran: "",
+    total: "",
+    ucapan: document.getElementById("prayer").value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(() => alert("Ucapan terkirim"));
+});
