@@ -170,12 +170,14 @@ function mulai() {
 
 const scriptURL = "https://script.google.com/macros/s/AKfycbw42tjCMMHn-uv7CBhERa996ZjJnbd0evivlP4w5rm4nUrLCZ-iwZNenfkJa6WefDdQTA/exec";
 
-// FORM RSVP
-document.querySelector("#rsvp-form + div button").addEventListener("click", function() {
+/* ===================== RSVP ===================== */
+document.querySelector("#rsvp-form + div button").addEventListener("click", function(e) {
+  e.preventDefault();
+
   const data = {
     nama: document.getElementById("name_rsvp").value,
     phone: document.getElementById("phone").value,
-    kehadiran: document.querySelector('input[name="fav_language"]:checked').id,
+    kehadiran: document.querySelector('input[name="fav_language"]:checked').value,
     total: document.getElementById("total_hadir").value,
     ucapan: ""
   };
@@ -183,11 +185,22 @@ document.querySelector("#rsvp-form + div button").addEventListener("click", func
   fetch(scriptURL, {
     method: "POST",
     body: JSON.stringify(data)
-  }).then(() => alert("Data RSVP terkirim"));
+  })
+  .then(res => res.text())
+  .then(res => {
+    console.log(res);
+    alert("Data RSVP terkirim");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Gagal kirim RSVP");
+  });
 });
 
-// FORM UCAPAN
-document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function() {
+/* ===================== UCAPAN ===================== */
+document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function(e) {
+  e.preventDefault();
+
   const data = {
     nama: document.getElementById("fname_ucapan").value,
     phone: "",
@@ -199,5 +212,14 @@ document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function(
   fetch(scriptURL, {
     method: "POST",
     body: JSON.stringify(data)
-  }).then(() => alert("Ucapan terkirim"));
+  })
+  .then(res => res.text())
+  .then(res => {
+    console.log(res);
+    alert("Ucapan terkirim");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Gagal kirim ucapan");
+  });
 });
