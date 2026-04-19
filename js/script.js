@@ -173,7 +173,7 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbySHRXKf6d6seNlVl4-Sp
 // FORM RSVP
 document.querySelector("#rsvp-form + div button").addEventListener("click", function() {
   const data = {
-    nama: document.getElementById("fname_rsvp").value,
+    nama: document.getElementById("name_rsvp").value,
     phone: document.getElementById("phone").value,
     kehadiran: document.querySelector('input[name="fav_language"]:checked').id,
     total: document.getElementById("total_hadir").value,
