@@ -171,7 +171,7 @@ function mulai() {
 const scriptURL = "https://script.google.com/macros/s/AKfycbySHRXKf6d6seNlVl4-Spb65dGwP15yqTMjI_YpVVCa0ViNa9Xf-a6klvdanjf1j96kHg/exec";
 
 // FORM RSVP
-document.querySelector("#rsvp-form + div button").addEventListener("click", function() {
+document.querySelector("#btn-konfirmasi").addEventListener("click", function() {
   const data = {
     nama: document.getElementById("fname_rsvp").value,
     phone: document.getElementById("phone").value,
@@ -187,7 +187,7 @@ document.querySelector("#rsvp-form + div button").addEventListener("click", func
 });
 
 // FORM UCAPAN
-document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function() {
+document.querySelectorAll("#btn-ucapan")[1].addEventListener("click", function() {
   const data = {
     nama: document.getElementById("fname_ucapan").value,
     phone: "",
