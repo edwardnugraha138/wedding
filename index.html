@@ -227,51 +227,51 @@
                             </div>
                         </div>
                         <div id="rsvpSection" class="rounded-section">
-                            <p class="headline-20">Rsvp</p>
-                            <p class="headline-12">
+                            <p class="headline-20 brown">Rsvp</p>
+                            <p class="headline-12 brown">
                                 Bantu kami mempersiapkan acara ini dengan mengirim konfirmasi hadir Anda melalui format berikut:  
                             </p>
                             <form action="" id="rsvp-form">
                                 <div class="flexbox flex-col">
-                                    <p class="headline-12 text-left">Nama</p>
+                                    <p class="headline-12 text-left brown">Nama</p>
                                     <input id="name_rsvp" class="rounded-sm mb-5 p-2" placeholder="Nama" type="text" name="fname" required>
-                                    <p class="headline-12 text-left">Nomor Handphone</p>
+                                    <p class="headline-12 text-left brown">Nomor Handphone</p>
                                     <input id="phone" class="rounded-sm mb-5 p-2" placeholder="Nomor Handphone" type="text" name="phone" required>
                                 </div>
                                 <div class="flexbox flex-col">
-                                    <p class="headline-12 text-left">Kehadiran</p>
+                                    <p class="headline-12 text-left brown">Kehadiran</p>
                                     <div class="flexbox flex-row space-x-12">
                                         <div class="flexbox flex-row space-x-2">
                                             <input id="ya" type="radio" name="fav_language" required checked>
-                                            <label>Ya</label>
+                                            <label class="brown">Ya</label>
                                         </div>
                                         <div class="flexbox flex-row space-x-2">
                                             <input id="tidak" type="radio" name="fav_language" required>
-                                            <label>Tidak</label>
+                                            <label class="brown">Tidak</label>
                                         </div>
                                     </div>
                                     <div id="total_hadir_wrapper" class="mt-5 text-left">
-                                        <p class="headline-12">Total Kehadiran</p>
-                                        <input id="total_hadir" class="rounded-sm mb-5 p-2 text-brown-30" placeholder="Total Kehadiran" type="number" name="total_hadir" required>
+                                        <p class="brown headline-12">Total Kehadiran</p>
+                                        <input id="total_hadir" class="rounded-sm mb-5 p-2 text-brown-30" placeholder="Total Kehadiran" min="1" type="number" name="total_hadir" required>
                                     </div>
                                 </div>
                             </form>
                             <div class="flexbox flex-col pt-5">
-                                <button class="btn-confirm">Kirim konfirmasi</button>
+                                <button class="brown btn-confirm">Kirim konfirmasi</button>
                             </div>
 
                             <div class="flexbox flex-col">
                                 <div class="flexbox flex-col pb-6 pt-8">
-                                    <p class="headline-20">Doa dan Ucapan</p>
+                                    <p class="brown headline-20">Doa dan Ucapan</p>
                                     <div class="flexbox flex-col">
-                                        <p class="headline-12 text-left">Nama</p>
+                                        <p class="brown headline-12 text-left">Nama</p>
                                         <input id="fname_ucapan" class="rounded-sm mb-5 p-2" placeholder="Nama" type="text" name="fname" required>
-                                        <p class="headline-12 text-left">Kirim ucapan dan doa <br> kepada kami</p>
+                                        <p class="brown headline-12 text-left">Kirim ucapan dan doa <br> kepada kami :</p>
                                         <textarea id="prayer" class="rounded-sm mb-5 p-2" type="text" name="prayer" rows="4" cols="50"></textarea>
                                     </div>
                                 </div>
                                 <div class="flexbox flex-col pt-5">
-                                    <button  class="btn-confirm">Kirim Doa dan Ucapan</button>
+                                    <button  class="brown btn-confirm">Kirim Doa dan Ucapan</button>
                                 </div>
                             </div>
                         </div>
@@ -283,6 +283,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id="imgPopup" class="img-popup">
+                <span class="close">&times;</span>
+
+                <span class="arrow left">&#10094;</span>
+                <img id="popupImg" src="" alt="">
+                <span class="arrow right">&#10095;</span>
             </div>
     <!--JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

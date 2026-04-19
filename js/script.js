@@ -201,3 +201,54 @@ document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function(
     body: JSON.stringify(data)
   }).then(() => alert("Ucapan terkirim"));
 });
+
+const popup = document.getElementById("imgPopup");
+const popupImg = document.getElementById("popupImg");
+const closeBtn = document.querySelector(".img-popup .close");
+const leftArrow = document.querySelector(".arrow.left");
+const rightArrow = document.querySelector(".arrow.right");
+
+// ambil semua gambar
+const images = Array.from(document.querySelectorAll(".column-img, .row-img"));
+let currentIndex = 0;
+
+// buka popup
+images.forEach((img, index) => {
+  img.addEventListener("click", function () {
+    currentIndex = index;
+    popup.style.display = "flex";
+    popupImg.src = this.src;
+  });
+});
+
+// fungsi update gambar
+function showImage(index) {
+  if (index < 0) index = images.length - 1;
+  if (index >= images.length) index = 0;
+
+  currentIndex = index;
+  popupImg.src = images[currentIndex].src;
+}
+
+// arrow click
+leftArrow.addEventListener("click", function (e) {
+  e.stopPropagation();
+  showImage(currentIndex - 1);
+});
+
+rightArrow.addEventListener("click", function (e) {
+  e.stopPropagation();
+  showImage(currentIndex + 1);
+});
+
+// close popup
+closeBtn.addEventListener("click", function () {
+  popup.style.display = "none";
+});
+
+// klik background untuk close
+popup.addEventListener("click", function (e) {
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+});
