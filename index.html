@@ -226,6 +226,55 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="rsvpSection" class="rounded-section">
+                            <p class="headline-20">Rsvp</p>
+                            <p class="headline-12">
+                                Bantu kami mempersiapkan acara ini dengan mengirim konfirmasi hadir Anda melalui format berikut:  
+                            </p>
+                            <form action="" id="rsvp-form">
+                                <div class="flexbox flex-col">
+                                    <p class="headline-12 text-left">Nama</p>
+                                    <input id="fname" class="rounded-sm mb-5 p-2" placeholder="Nama" type="text" name="fname" required>
+                                    <p class="headline-12 text-left">Nomor Handphone</p>
+                                    <input id="phone" class="rounded-sm mb-5 p-2" placeholder="Nomor Handphone" type="text" name="phone" required>
+                                </div>
+                                <div class="flexbox flex-col">
+                                    <p class="headline-12 text-left">Kehadiran</p>
+                                    <div class="flexbox flex-row space-x-12">
+                                        <div class="flexbox flex-row space-x-2">
+                                            <input id="ya" type="radio" name="fav_language" required value="1" checked>
+                                            <label>Ya</label>
+                                        </div>
+                                        <div class="flexbox flex-row space-x-2">
+                                            <input id="tidak" type="radio" name="fav_language" required value="1">
+                                            <label>Tidak</label>
+                                        </div>
+                                    </div>
+                                    <div id="total_hadir_wrapper" class="mt-5 text-left">
+                                        <p class="headline-12">Total Kehadiran</p>
+                                        <input id="total_hadir" class="rounded-sm mb-5 p-2 text-brown-30" placeholder="Total Kehadiran" type="number" name="total_hadir" required>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="flexbox flex-col pt-5">
+                                <button class="btn-confirm">Kirim konfirmasi</button>
+                            </div>
+
+                            <div class="flexbox flex-col">
+                                <div class="flex flex-col px-6 pb-6 pt-8">
+                                    <p class="headline-20">Doa dan Ucapan</p>
+                                    <div class="flexbox flex-col">
+                                        <p class="headline-12 text-left">Nama</p>
+                                        <input id="fname_ucapan" class="rounded-sm mb-5 p-2" placeholder="Nama" type="text" name="fname" required>
+                                        <p class="headline-12 text-left">Kirim ucapan dan doa <br> kepada kami</p>
+                                        <textarea id="prayer" class="rounded-sm mb-5 p-2" type="text" name="prayer" rows="4" cols="50"></textarea>
+                                    </div>
+                                </div>
+                                <div class="flexbox flex-col pt-5">
+                                    <button class="btn-confirm">Kirim Doa dan Ucapan</button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="closing-section">
                             <div data-aos="zoom-in-up" data-aos-delay="200" class="background-closing">
                                 <img data-aos="zoom-in-up" data-aos-delay="200" src="assets/IMG_2287-Photoroom.png" alt="" class="img-closing" width="100" height="100">
