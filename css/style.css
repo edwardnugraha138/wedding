@@ -326,10 +326,9 @@ video{
   font-family: "Cormorant Garamond", serif;
   font-style: normal;
   font-weight: 600;
-  font-size: clamp(12.2px, 0.3vw, 23px);
+  font-size: 12.2px;
   line-height: 25px;
-  letter-spacing: 1px;
-  width: 135%;
+  letter-spacing: .1px;
 }
 
 .foto-mempelai{
@@ -500,8 +499,6 @@ img{
   flex-direction: column;
   display: flex;
   margin-top: .625rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 
 .headline-21{
@@ -525,7 +522,7 @@ img{
   font-weight: 600;
   font-size: 19.2px;
   line-height: 25px;
-  letter-spacing: 1px;
+  letter-spacing: .1px;
   color: #000000;
   margin-top: .5rem;
   margin-bottom: .5rem;
@@ -535,11 +532,10 @@ img{
   font-family: "Cormorant Garamond", serif;
   font-style: normal;
   font-weight: 600;
-  font-size: clamp(19.2px, 0.5vw, 33px);
+  font-size: 19.2px;
   line-height: 25px;
   letter-spacing: 1px;
   color: #000000;
-  width: 135%;
 }
 
 .body-5 {
