@@ -50,20 +50,21 @@
 //   })
 
 
-var tempMusic = ''
+var tempMusic = 'assets/asepirawan20-wedding-background-music-5529.mp3' // 🔥 isi file musik kamu
 var music = document.querySelector('.music')
 
 if (tempMusic) {
     music.src = tempMusic
 }
 
-// 🔥 INIT AOS (taruh di awal, tapi aman)
+// 🔥 INIT AOS
 AOS.init({
     duration: 1000,
     once: true
 })
 
 function mulai() {
+    // reset scroll
     window.scrollTo(0, 0)
 
     var soundDoor = document.querySelector('.sound-door')
@@ -71,46 +72,64 @@ function mulai() {
     var video = document.getElementById('myVideo')
     var mainContent = document.querySelector('.main-content')
 
-    soundDoor.play()
+    // 🔊 sound efek pintu
+    if (soundDoor) {
+        soundDoor.play().catch(() => {})
+    }
 
+    // 🔥 WAJIB: play langsung (tanpa setTimeout)
+    if (music) {
+        music.play().catch(() => {
+            console.log('Autoplay musik diblokir iPhone')
+        })
+    }
+
+    if (video) {
+        video.play().catch(() => {
+            console.log('Autoplay video diblokir iPhone')
+        })
+    }
+
+    // 🚪 animasi pintu
     var doors = document.querySelectorAll('.door')
     doors.forEach(function (door, index){
         var direction = (index === 0) ? -1 : 1
         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
     })
 
-    // 🎬 buka pintu
+    // 🎬 efek zoom pintu
     setTimeout(function (){
-        music.play()
-        video.play()
-
         doorSection.css('transform', 'scale(6)')
     }, 300)
 
+    // 🧼 buka konten utama
     setTimeout(function (){
-
         doorSection.css({
             opacity: 0,
             display: 'none'
         })
 
-        $('body').removeClass('overflow-hidden')
-        $('body').addClass('transition')
+        // 🔥 FIX SCROLL iPhone
+        document.body.classList.remove('overflow-hidden')
+        document.body.style.overflow = 'auto'
+        document.documentElement.style.overflow = 'auto'
+        document.body.style.position = 'static'
 
+        document.body.classList.add('transition')
 
+        // tampilkan konten
         mainContent.style.opacity = 1
         mainContent.style.visibility = 'visible'
 
-        // 🔥 WAJIB delay render browser dulu
+        // 🔥 refresh AOS (biar animasi muncul)
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 AOS.refreshHard()
             })
         })
 
-    }, 200)
+    }, 800) // 🔥 HARUS lebih lama dari animasi pertama
 }
-
 
   // GANTI tanggal target di sini
   const targetDate = new Date("2026-06-14 19:00:00").getTime();
