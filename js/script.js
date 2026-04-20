@@ -128,7 +128,7 @@ function mulai() {
             })
         })
 
-    }, 800) // 🔥 HARUS lebih lama dari animasi pertama
+    }, 200) // 🔥 HARUS lebih lama dari animasi pertama
 }
 
   // GANTI tanggal target di sini
