@@ -40,6 +40,29 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.navigation{
+  box-shadow: 0 4px 8px #0000000d,0 2px 20px #0000000d;
+  padding-top: .625rem;
+  padding-bottom: .625rem;
+  background-color: rgb(255 255 255);
+  border-radius: 9999px;
+  justify-content: space-around;
+  flex-direction: row;
+  display: flex;
+  z-index: 50;
+  left: 33.3333%;
+  right: 33.333%;
+  bottom: .5rem;
+  position: fixed;
+}
+
+.navigation button{
+  background-color: transparent;
+}
+
+.hidden{
+  display: none;
+}
 .container-section{
   margin: 0 auto;
   max-width: 480px;
@@ -387,7 +410,13 @@ video{
   width: 100%;
   margin-bottom: 1.5rem;
 }
-
+.caption-1 {
+  font-family: Noto Sans,sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 0;
+}
 .caption-11{
   font-size: 20.8px;
   font-family:  "Cormorant Garamond", serif;
@@ -662,6 +691,15 @@ font-family:  "Cormorant Garamond", serif;
 }
 .flex-col{
   flex-direction: column;
+}
+
+.itemcenter{
+  align-items: center;
+}
+
+.px-1{
+  padding-left: .25rem;
+  padding-right: .25rem;
 }
 
 .flex-row{
