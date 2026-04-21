@@ -73,48 +73,47 @@ function mulai() {
     var doorSection = $('#door-section')
     var mainContent = document.querySelector('.main-content')
 
-    // 🔊 sound pintu
+    // 🔥 WAJIB: PLAY DI SINI (langsung dari klik)
+    if (music) {
+        music.currentTime = 0
+        music.play().catch(err => console.log("music gagal:", err))
+    }
+
+    if (video) {
+        video.currentTime = 0
+        video.play().catch(err => console.log("video gagal:", err))
+    }
+
     if (soundDoor) {
         soundDoor.currentTime = 0
         soundDoor.play().catch(()=>{})
     }
 
+    isPlaying = true
+    updateButtonUI()
+
     // animasi pintu
-    document.querySelectorAll('.door').forEach(function (door, index){
+    document.querySelectorAll('.door').forEach((door, index) => {
         var direction = (index === 0) ? -1 : 1
         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
     })
 
-    // 🎬 play media
+    // ❗ HANYA animasi pakai delay, BUKAN play audio
     setTimeout(function (){
-        if (music) music.play().catch(()=>{})
-        if (video) video.play().catch(()=>{})
-
-        isPlaying = true
-        updateButtonUI()
-
         doorSection.css('transform', 'scale(6)')
     }, 300)
 
-    // masuk ke konten
     setTimeout(function (){
         doorSection.css({
             opacity: 0,
             display: 'none'
         })
 
-        // ✅ FIX SCROLL DI SINI
         document.body.classList.remove('overflow-hidden')
         document.body.style.overflow = 'auto'
 
         mainContent.style.opacity = 1
         mainContent.style.visibility = 'visible'
-
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                AOS.refreshHard()
-            })
-        })
 
     }, 300)
 }

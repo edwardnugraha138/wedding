@@ -932,6 +932,7 @@ textarea{
     left: 33.333333%;
     right: 33.333333%;
   }
+}
 @media (max-width: 640px){
   .bg-linear-btn-cal{
     width: 106%;
