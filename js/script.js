@@ -50,14 +50,159 @@
 //   })
 
 
-var tempMusic = ''
-var music = document.querySelector('.music')
+// var tempMusic = ''
+// var music = document.querySelector('.music')
 
-if (tempMusic) {
-    music.src = tempMusic
+// if (tempMusic) {
+//     music.src = tempMusic
+// }
+
+// // 🔥 INIT AOS (taruh di awal, tapi aman)
+// AOS.init({
+//     duration: 1000,
+//     once: true
+// })
+
+// function mulai() {
+//     window.scrollTo(0, 0)
+
+//     var soundDoor = document.querySelector('.sound-door')
+//     var doorSection = $('#door-section')
+//     var video = document.getElementById('myVideo')
+//     var mainContent = document.querySelector('.main-content')
+
+//     soundDoor.play()
+
+//     var doors = document.querySelectorAll('.door')
+//     doors.forEach(function (door, index){
+//         var direction = (index === 0) ? -1 : 1
+//         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
+//     })
+
+//     // 🎬 buka pintu
+//     setTimeout(function (){
+//         music.play()
+//         video.play()
+
+//         doorSection.css('transform', 'scale(6)')
+//     }, 300)
+
+//     setTimeout(function (){
+
+//         doorSection.css({
+//             opacity: 0,
+//             display: 'none'
+//         })
+
+//         $('body').removeClass('overflow-hidden')
+//         $('body').addClass('transition')
+
+
+//         mainContent.style.opacity = 1
+//         mainContent.style.visibility = 'visible'
+
+//         // 🔥 WAJIB delay render browser dulu
+//         requestAnimationFrame(() => {
+//             requestAnimationFrame(() => {
+//                 AOS.refreshHard()
+//             })
+//         })
+
+//     }, 300)
+// }
+
+
+// let music
+// let soundDoor
+
+// // setup audio dari JS
+// if (typeof tempMusic !== "undefined" && tempMusic) {
+//     music = new Audio(tempMusic)
+// } else {
+//     music = new Audio("assets/asepirawan20-wedding-background-music-5529.mp3")
+// }
+
+// music.loop = true
+
+// // 🔥 INIT AOS
+// AOS.init({
+//     duration: 1000,
+//     once: true
+// })
+
+// function mulai() {
+//     window.scrollTo(0, 0)
+
+//     const doorSection = $('#door-section')
+//     const video = document.getElementById('myVideo')
+//     const mainContent = document.querySelector('.main-content')
+
+//     // reset biar sinkron
+//     music.currentTime = 0
+//     soundDoor.currentTime = 0
+//     video.currentTime = 0
+
+//     // 🔊 play sound pintu
+//     soundDoor.play().catch(err => {
+//         console.log("Sound door gagal:", err)
+//     })
+
+//     // animasi pintu
+//     const doors = document.querySelectorAll('.door')
+//     doors.forEach(function (door, index){
+//         const direction = (index === 0) ? -1 : 1
+//         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
+//     })
+
+//     // 🎬 buka + play media
+//     setTimeout(function (){
+//         music.play().catch(err => {
+//             console.log("Music gagal:", err)
+//         })
+
+//         video.play().catch(err => {
+//             console.log("Video gagal:", err)
+//         })
+
+//         doorSection.css('transform', 'scale(6)')
+//     }, 300)
+
+//     setTimeout(function (){
+//         doorSection.css({
+//             opacity: 0,
+//             display: 'none'
+//         })
+
+//         $('body').removeClass('overflow-hidden')
+//         $('body').addClass('transition')
+
+//         mainContent.style.opacity = 1
+//         mainContent.style.visibility = 'visible'
+
+//         // refresh AOS biar animasi jalan
+//         requestAnimationFrame(() => {
+//             requestAnimationFrame(() => {
+//                 AOS.refreshHard()
+//             })
+//         })
+
+//     }, 200)
+// }
+
+
+let music
+
+// setup audio
+if (typeof tempMusic !== "undefined" && tempMusic) {
+    music = new Audio(tempMusic)
+} else {
+    music = new Audio("assets/asepirawan20-wedding-background-music-5529.mp3")
 }
 
-// 🔥 INIT AOS (taruh di awal, tapi aman)
+music.loop = true
+music.volume = 0 // kita fade in nanti
+
+// 🔥 INIT AOS
 AOS.init({
     duration: 1000,
     once: true
@@ -66,29 +211,51 @@ AOS.init({
 function mulai() {
     window.scrollTo(0, 0)
 
-    var soundDoor = document.querySelector('.sound-door')
-    var doorSection = $('#door-section')
-    var video = document.getElementById('myVideo')
-    var mainContent = document.querySelector('.main-content')
+    const video = document.getElementById('myVideo')
+    const mainContent = document.querySelector('.main-content')
+    const doorSection = $('#door-section')
 
-    soundDoor.play()
+    // reset
+    music.currentTime = 0
+    video.currentTime = 0
 
-    var doors = document.querySelectorAll('.door')
-    doors.forEach(function (door, index){
-        var direction = (index === 0) ? -1 : 1
-        door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
+    // 🔥 WAJIB: play langsung di klik
+    const playMusic = music.play()
+    const playVideo = video.play()
+
+    if (playMusic !== undefined) {
+        playMusic.catch(err => console.log("Music gagal:", err))
+    }
+
+    if (playVideo !== undefined) {
+        playVideo.catch(err => console.log("Video gagal:", err))
+    }
+
+    // 🎧 fade in music (biar smooth & premium)
+    let vol = 0
+    const fade = setInterval(() => {
+        if (vol < 0.8) {
+            vol += 0.05
+            music.volume = vol
+        } else {
+            clearInterval(fade)
+        }
+    }, 100)
+
+    // 🎬 animasi pintu
+    const doors = document.querySelectorAll('.door')
+    doors.forEach((door, index) => {
+        const direction = index === 0 ? -1 : 1
+        door.style.transform = `rotateY(${70 * direction}deg)`
     })
 
-    // 🎬 buka pintu
-    setTimeout(function (){
-        music.play()
-        video.play()
-
+    // zoom effect
+    setTimeout(() => {
         doorSection.css('transform', 'scale(6)')
     }, 300)
 
-    setTimeout(function (){
-
+    // masuk ke konten utama
+    setTimeout(() => {
         doorSection.css({
             opacity: 0,
             display: 'none'
@@ -97,18 +264,15 @@ function mulai() {
         $('body').removeClass('overflow-hidden')
         $('body').addClass('transition')
 
-
         mainContent.style.opacity = 1
         mainContent.style.visibility = 'visible'
 
-        // 🔥 WAJIB delay render browser dulu
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 AOS.refreshHard()
             })
         })
-
-    }, 300)
+    }, 300) // sedikit lebih lama biar cinematic
 }
 
 
