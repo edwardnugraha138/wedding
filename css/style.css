@@ -417,6 +417,44 @@ video{
   line-height: 16px;
   margin-bottom: 0;
 }
+#wishes-container{
+  text-align: left;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.caption-2{
+  font-family: Noto Sans,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(85 57 28);
+  margin-bottom: 0 !important;
+}
+
+.caption-3{
+  font-family: Noto Sans,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(171 171 171);
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
+
+.caption-4{
+  font-family: Noto Sans,sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgb(85 57 28);
+}
+
 .caption-11{
   font-size: 20.8px;
   font-family:  "Cormorant Garamond", serif;

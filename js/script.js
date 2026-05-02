@@ -61,7 +61,7 @@ if (tempMusic) {
     music.src = tempMusic
 }
 
-// 🔥 INIT AOS
+// INIT AOS
 AOS.init({
     duration: 1000,
     once: true
@@ -73,10 +73,28 @@ function mulai() {
     var doorSection = $('#door-section')
     var mainContent = document.querySelector('.main-content')
 
-    // 🔊 sound pintu
-    if (soundDoor) {
-        soundDoor.currentTime = 0
-        soundDoor.play().catch(()=>{})
+    // 🔥 WAJIB: semua play di dalam user gesture
+    try {
+        if (music) {
+            music.muted = false
+            music.play()
+        }
+
+        if (video) {
+            video.muted = false
+            video.play()
+        }
+
+        if (soundDoor) {
+            soundDoor.currentTime = 0
+            soundDoor.play()
+        }
+
+        isPlaying = true
+        updateButtonUI()
+
+    } catch (e) {
+        console.log("Autoplay blocked:", e)
     }
 
     // animasi pintu
@@ -85,25 +103,17 @@ function mulai() {
         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
     })
 
-    // 🎬 play media
+    // animasi tetap boleh delay
     setTimeout(function (){
-        if (music) music.play().catch(()=>{})
-        if (video) video.play().catch(()=>{})
-
-        isPlaying = true
-        updateButtonUI()
-
         doorSection.css('transform', 'scale(6)')
     }, 300)
 
-    // masuk ke konten
     setTimeout(function (){
         doorSection.css({
             opacity: 0,
             display: 'none'
         })
 
-        // ✅ FIX SCROLL DI SINI
         document.body.classList.remove('overflow-hidden')
         document.body.style.overflow = 'auto'
 
@@ -117,38 +127,6 @@ function mulai() {
         })
 
     }, 300)
-}
-
-// 🔥 UPDATE BUTTON
-function updateButtonUI() {
-    var icon = document.getElementById('iconMusic')
-    var text = document.getElementById('textMusic')
-
-    if (isPlaying) {
-        icon.src = "assets/icon-pause-26b49139.svg"
-        text.innerText = "Pause"
-    } else {
-        icon.src = "assets/icon-play-36bd56d6.svg"
-        text.innerText = "Play"
-    }
-}
-
-// 🎵 TOGGLE MUSIC + VIDEO
-function toggleMusic() {
-    if (isPlaying) {
-        if (music) music.pause()
-        if (video) video.pause()
-        if (soundDoor) soundDoor.pause()
-
-        isPlaying = false
-    } else {
-        if (music) music.play().catch(()=>{})
-        if (video) video.play().catch(()=>{})
-
-        isPlaying = true
-    }
-
-    updateButtonUI()
 }
 
   // GANTI tanggal target di sini
@@ -207,6 +185,7 @@ function toggleMusic() {
     }
   });
 
+
 const scriptURL = "https://script.google.com/macros/s/AKfycbySHRXKf6d6seNlVl4-Spb65dGwP15yqTMjI_YpVVCa0ViNa9Xf-a6klvdanjf1j96kHg/exec";
 
 // FORM RSVP
@@ -225,21 +204,137 @@ document.querySelector("#rsvp-form + div button").addEventListener("click", func
   }).then(() => alert("Data RSVP terkirim"));
 });
 
-// FORM UCAPAN
-document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function() {
-  const data = {
-    nama: document.getElementById("fname_ucapan").value,
-    phone: "",
-    kehadiran: "",
-    total: "",
-    ucapan: document.getElementById("prayer").value
-  };
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: JSON.stringify(data)
-  }).then(() => alert("Ucapan terkirim"));
+const scriptWish = "https://script.google.com/macros/s/AKfycbyLoKPbFz1GdoED18KDIAhuEdLULkMEZUwcYUrrnCdk-Z2zmfgFagIn6WBLeLaB7y9B/exec";
+
+document.getElementById("submitWish").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("fname_ucapan").value;
+    const ucapan = document.getElementById("prayer").value;
+
+    if (!nama || !ucapan) {
+        alert("Harap isi nama dan ucapan");
+        return;
+    }
+
+    const now = new Date();
+    const waktu = now.toLocaleString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    // ✅ 1. TAMPILKAN LANGSUNG (tanpa nunggu server)
+    addWishToUI(nama, ucapan, waktu);
+
+    // reset input
+    document.getElementById("fname_ucapan").value = "";
+    document.getElementById("prayer").value = "";
+
+    // ✅ 2. KIRIM KE GOOGLE SHEETS (background)
+    fetch(scriptWish, {
+        method: "POST",
+        body: JSON.stringify({
+            nama: nama,
+            ucapan: ucapan,
+            waktu: waktu
+        })
+    })
+    .catch(err => console.error("Gagal kirim:", err));
 });
+
+
+// fungsi untuk langsung tampil
+function addWishToUI(nama, ucapan, waktu) {
+    const container = document.getElementById("wishes-container");
+
+    const div = document.createElement("div");
+    div.classList.add("flexbox", "flex-col", "mb-4");
+
+    div.innerHTML = `
+        <p class="caption-2">${nama}</p>
+        <p class="caption-3">${waktu}</p>
+        <p class="caption-4">${ucapan}</p>
+    `;
+
+    container.prepend(div); // biar muncul paling atas
+}
+
+
+// tetap load dari spreadsheet saat buka halaman
+function loadWishes() {
+    fetch(scriptWish)
+    .then(res => res.json())
+    .then(data => {
+        const container = document.getElementById("wishes-container");
+        container.innerHTML = "";
+
+        data.slice(1).reverse().forEach(row => {
+            const [nama, ucapan, waktu] = row;
+            addWishToUI(nama, ucapan, waktu);
+        });
+    });
+}
+
+setInterval(loadWishes, 500);
+
+
+// FORM UCAPAN
+// document.querySelectorAll(".btn-confirm")[1].addEventListener("click", function() {
+//   const data = {
+//     nama: document.getElementById("fname_ucapan").value,
+//     phone: "",
+//     kehadiran: "",
+//     total: "",
+//     ucapan: document.getElementById("prayer").value
+//   };
+
+//   fetch(scriptURL, {
+//     method: "POST",
+//     body: JSON.stringify(data)
+//   }).then(() => alert("Ucapan terkirim"));
+// });
+
+
+// document.getElementById("submitWish").addEventListener("click", function() {
+//     const nama = document.getElementById("fname_ucapan").value;
+//     const ucapan = document.getElementById("prayer").value;
+
+//     if(nama.trim() === "" || ucapan.trim() === "") {
+//         alert("Nama dan ucapan harus diisi!");
+//         return;
+//     }
+
+//     const container = document.getElementById("wishes-container");
+
+//     // ambil waktu sekarang
+//     const now = new Date();
+//     const jam = now.toLocaleTimeString("id-ID", {
+//         day: "numeric",
+//         month: "numeric",
+//         year: "numeric",
+//         hour: "2-digit",
+//         minute: "2-digit"
+//     });
+
+//     const newWish = document.createElement("div");
+//     newWish.classList.add("flexbox", "flex-col", "mb-4");
+
+//     newWish.innerHTML = `
+//         <p class="caption-2">${nama}</p>
+//         <p class="caption-3"> ${jam}</p>
+//         <p class="caption-4">${ucapan}</p>
+//     `;
+
+//     container.prepend(newWish);
+
+//     // reset form
+//     document.getElementById("fname_ucapan").value = "";
+//     document.getElementById("prayer").value = "";
+// });
 
 const popup = document.getElementById("imgPopup");
 const popupImg = document.getElementById("popupImg");
