@@ -50,115 +50,15 @@
 //   })
 
 
-// var tempMusic = ''
-// var music = document.querySelector('.music')
-// var soundDoor = document.querySelector('.sound-door')
-// var video = document.getElementById('myVideo')
-
-// var isPlaying = false
-
-// if (tempMusic) {
-//     music.src = tempMusic
-// }
-
-// // 🔥 INIT AOS
-// AOS.init({
-//     duration: 1000,
-//     once: true
-// })
-
-// function mulai() {
-//     window.scrollTo(0, 0)
-
-//     var doorSection = $('#door-section')
-//     var mainContent = document.querySelector('.main-content')
-
-//     // 🔊 sound pintu
-//     if (soundDoor) {
-//         soundDoor.currentTime = 0
-//         soundDoor.play().catch(()=>{})
-//     }
-
-//     // animasi pintu
-//     document.querySelectorAll('.door').forEach(function (door, index){
-//         var direction = (index === 0) ? -1 : 1
-//         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
-//     })
-
-//     // 🎬 play media
-//     setTimeout(function (){
-//         if (music) music.play().catch(()=>{})
-//         if (video) video.play().catch(()=>{})
-
-//         isPlaying = true
-//         updateButtonUI()
-
-//         doorSection.css('transform', 'scale(6)')
-//     }, 300)
-
-//     // masuk ke konten
-//     setTimeout(function (){
-//         doorSection.css({
-//             opacity: 0,
-//             display: 'none'
-//         })
-
-//         // ✅ FIX SCROLL DI SINI
-//         document.body.classList.remove('overflow-hidden')
-//         document.body.style.overflow = 'auto'
-
-//         mainContent.style.opacity = 1
-//         mainContent.style.visibility = 'visible'
-
-//         requestAnimationFrame(() => {
-//             requestAnimationFrame(() => {
-//                 AOS.refreshHard()
-//             })
-//         })
-
-//     }, 300)
-// }
-
-// // 🔥 UPDATE BUTTON
-// function updateButtonUI() {
-//     var icon = document.getElementById('iconMusic')
-//     var text = document.getElementById('textMusic')
-
-//     if (isPlaying) {
-//         icon.src = "assets/icon-pause-26b49139.svg"
-//         text.innerText = "Pause"
-//     } else {
-//         icon.src = "assets/icon-play-36bd56d6.svg"
-//         text.innerText = "Play"
-//     }
-// }
-
-// // 🎵 TOGGLE MUSIC + VIDEO
-// function toggleMusic() {
-//     if (isPlaying) {
-//         if (music) music.pause()
-//         if (video) video.pause()
-//         if (soundDoor) soundDoor.pause()
-
-//         isPlaying = false
-//     } else {
-//         if (music) music.play().catch(()=>{})
-//         if (video) video.play().catch(()=>{})
-
-//         isPlaying = true
-//     }
-
-//     updateButtonUI()
-// }
-
-var tempMusic = 'assets/asepirawan20-wedding-background-music-5529.mp3'
+var tempMusic = ''
 var music = document.querySelector('.music')
 var soundDoor = document.querySelector('.sound-door')
 var video = document.getElementById('myVideo')
 
 var isPlaying = false
+var autoPlayBlocked = false
 
-if (tempMusic) {
+if (tempMusic && music) {
     music.src = tempMusic
 }
 
@@ -174,42 +74,42 @@ function mulai() {
     var doorSection = $('#door-section')
     var mainContent = document.querySelector('.main-content')
 
-    // 🔥 WAJIB: semua play di dalam user gesture
-    try {
-        if (music) {
-            music.muted = false
-            music.play()
-        }
+    // 🔥 PENTING: PLAY MUSIK LANGSUNG (tanpa setTimeout)
+    if (music) {
+        music.muted = false
+        music.currentTime = 0
+        music.play().then(() => {
+            isPlaying = true
+            updateButtonUI()
+        }).catch(err => {
+            console.log("Gagal play musik:", err)
+        })
+    }
 
-        if (video) {
-            video.muted = false
-            video.play()
-        }
-
-        if (soundDoor) {
-            soundDoor.currentTime = 0
-            soundDoor.play()
-        }
-
-        isPlaying = true
-        updateButtonUI()
-
-    } catch (e) {
-        console.log("Autoplay blocked:", e)
+    // 🔊 sound pintu (optional, kadang iOS blok kalau barengan)
+    if (soundDoor) {
+        soundDoor.currentTime = 0
+        soundDoor.play().catch(() => {})
     }
 
     // animasi pintu
-    document.querySelectorAll('.door').forEach(function (door, index){
+    document.querySelectorAll('.door').forEach(function (door, index) {
         var direction = (index === 0) ? -1 : 1
         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
     })
 
-    // animasi tetap boleh delay
-    setTimeout(function (){
+    // 🎬 video boleh pakai delay (karena bukan audio utama)
+    setTimeout(function () {
+        if (video) {
+            video.muted = true // iOS wajib muted untuk autoplay video
+            video.play().catch(() => {})
+        }
+
         doorSection.css('transform', 'scale(6)')
     }, 300)
 
-    setTimeout(function (){
+    // masuk ke konten
+    setTimeout(function () {
         doorSection.css({
             opacity: 0,
             display: 'none'
@@ -218,8 +118,10 @@ function mulai() {
         document.body.classList.remove('overflow-hidden')
         document.body.style.overflow = 'auto'
 
-        mainContent.style.opacity = 1
-        mainContent.style.visibility = 'visible'
+        if (mainContent) {
+            mainContent.style.opacity = 1
+            mainContent.style.visibility = 'visible'
+        }
 
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
@@ -229,6 +131,118 @@ function mulai() {
 
     }, 300)
 }
+
+// UPDATE BUTTON
+function updateButtonUI() {
+    var icon = document.getElementById('iconMusic')
+    var text = document.getElementById('textMusic')
+
+    if (!music) return
+
+    if (!music.paused) {
+        if (icon) icon.src = "assets/icon-pause-26b49139.svg"
+        if (text) text.innerText = "Pause"
+        isPlaying = true
+    } else {
+        if (icon) icon.src = "assets/icon-play-36bd56d6.svg"
+        if (text) text.innerText = "Play"
+        isPlaying = false
+    }
+}
+
+// TOGGLE MUSIC ONLY
+function toggleMusic() {
+    autoPlayBlocked = true
+
+    if (!music) return
+
+    if (!music.paused) {
+        music.pause()
+    } else {
+        music.play().catch(() => {})
+    }
+
+    updateButtonUI()
+}
+
+// var tempMusic = 'assets/asepirawan20-wedding-background-music-5529.mp3'
+// var music = document.querySelector('.music')
+// var soundDoor = document.querySelector('.sound-door')
+// var video = document.getElementById('myVideo')
+
+// var isPlaying = false
+
+// if (tempMusic) {
+//     music.src = tempMusic
+// }
+
+// // INIT AOS
+// AOS.init({
+//     duration: 1000,
+//     once: true
+// })
+
+// function mulai() {
+//     window.scrollTo(0, 0)
+
+//     var doorSection = $('#door-section')
+//     var mainContent = document.querySelector('.main-content')
+
+//     // 🔥 WAJIB: semua play di dalam user gesture
+//     try {
+//         if (music) {
+//             music.muted = false
+//             music.play()
+//         }
+
+//         if (video) {
+//             video.muted = false
+//             video.play()
+//         }
+
+//         if (soundDoor) {
+//             soundDoor.currentTime = 0
+//             soundDoor.play()
+//         }
+
+//         isPlaying = true
+//         updateButtonUI()
+
+//     } catch (e) {
+//         console.log("Autoplay blocked:", e)
+//     }
+
+//     // animasi pintu
+//     document.querySelectorAll('.door').forEach(function (door, index){
+//         var direction = (index === 0) ? -1 : 1
+//         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
+//     })
+
+//     // animasi tetap boleh delay
+//     setTimeout(function (){
+//         doorSection.css('transform', 'scale(6)')
+//     }, 300)
+
+//     setTimeout(function (){
+//         doorSection.css({
+//             opacity: 0,
+//             display: 'none'
+//         })
+
+//         document.body.classList.remove('overflow-hidden')
+//         document.body.style.overflow = 'auto'
+
+//         mainContent.style.opacity = 1
+//         mainContent.style.visibility = 'visible'
+
+//         requestAnimationFrame(() => {
+//             requestAnimationFrame(() => {
+//                 AOS.refreshHard()
+//             })
+//         })
+
+//     }, 300)
+// }
 
   // GANTI tanggal target di sini
   const targetDate = new Date("2026-06-14 19:00:00").getTime();
