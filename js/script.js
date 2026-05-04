@@ -50,7 +50,108 @@
 //   })
 
 
-var tempMusic = ''
+// var tempMusic = ''
+// var music = document.querySelector('.music')
+// var soundDoor = document.querySelector('.sound-door')
+// var video = document.getElementById('myVideo')
+
+// var isPlaying = false
+
+// if (tempMusic) {
+//     music.src = tempMusic
+// }
+
+// // 🔥 INIT AOS
+// AOS.init({
+//     duration: 1000,
+//     once: true
+// })
+
+// function mulai() {
+//     window.scrollTo(0, 0)
+
+//     var doorSection = $('#door-section')
+//     var mainContent = document.querySelector('.main-content')
+
+//     // 🔊 sound pintu
+//     if (soundDoor) {
+//         soundDoor.currentTime = 0
+//         soundDoor.play().catch(()=>{})
+//     }
+
+//     // animasi pintu
+//     document.querySelectorAll('.door').forEach(function (door, index){
+//         var direction = (index === 0) ? -1 : 1
+//         door.style.transform = 'rotateY(' + (70 * direction) + 'deg)'
+//     })
+
+//     // 🎬 play media
+//     setTimeout(function (){
+//         if (music) music.play().catch(()=>{})
+//         if (video) video.play().catch(()=>{})
+
+//         isPlaying = true
+//         updateButtonUI()
+
+//         doorSection.css('transform', 'scale(6)')
+//     }, 300)
+
+//     // masuk ke konten
+//     setTimeout(function (){
+//         doorSection.css({
+//             opacity: 0,
+//             display: 'none'
+//         })
+
+//         // ✅ FIX SCROLL DI SINI
+//         document.body.classList.remove('overflow-hidden')
+//         document.body.style.overflow = 'auto'
+
+//         mainContent.style.opacity = 1
+//         mainContent.style.visibility = 'visible'
+
+//         requestAnimationFrame(() => {
+//             requestAnimationFrame(() => {
+//                 AOS.refreshHard()
+//             })
+//         })
+
+//     }, 300)
+// }
+
+// // 🔥 UPDATE BUTTON
+// function updateButtonUI() {
+//     var icon = document.getElementById('iconMusic')
+//     var text = document.getElementById('textMusic')
+
+//     if (isPlaying) {
+//         icon.src = "assets/icon-pause-26b49139.svg"
+//         text.innerText = "Pause"
+//     } else {
+//         icon.src = "assets/icon-play-36bd56d6.svg"
+//         text.innerText = "Play"
+//     }
+// }
+
+// // 🎵 TOGGLE MUSIC + VIDEO
+// function toggleMusic() {
+//     if (isPlaying) {
+//         if (music) music.pause()
+//         if (video) video.pause()
+//         if (soundDoor) soundDoor.pause()
+
+//         isPlaying = false
+//     } else {
+//         if (music) music.play().catch(()=>{})
+//         if (video) video.play().catch(()=>{})
+
+//         isPlaying = true
+//     }
+
+//     updateButtonUI()
+// }
+
+var tempMusic = 'assets/asepirawan20-wedding-background-music-5529.mp3'
 var music = document.querySelector('.music')
 var soundDoor = document.querySelector('.sound-door')
 var video = document.getElementById('myVideo')
